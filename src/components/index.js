@@ -24,7 +24,9 @@ function registerComponent(key, cls) {
 
     static applyProperty(umgElem, value, key) {
       if (!umgElem) return;
-      if (key != 'children') {
+      if (key === 'Slot' && umgElem[key]) {
+        set_attrs(umgElem.Slot, value);
+      } else if (key != 'children') {
         set_attr(umgElem, key, value)
       }
     }
