@@ -39,9 +39,8 @@ ClassMap.Results.forEach(cls => {
   if (mappingTable[key]) {
     registerComponent(mappingTable[key], cls)
   }
-  else {
-    registerComponent('u' + key, cls)
-  }
+
+  registerComponent('u' + key, cls)
 })
 
 module.exports = {
