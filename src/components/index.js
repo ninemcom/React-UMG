@@ -35,7 +35,7 @@ function registerComponent(key, cls) {
 }
 
 ClassMap.Results.forEach(cls => {
-  const key = _.first(_.last(JavascriptLibrary.GetClassPathName(cls).split('.')).split('_'));
+  const key = _.last(_.last(JavascriptLibrary.GetClassPathName(cls).split('.')).split('_'));
   if (mappingTable[key]) {
     registerComponent(mappingTable[key], cls)
   }
