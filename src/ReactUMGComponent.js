@@ -85,12 +85,16 @@ ReactUMGComponent.Mixin = {
       umgRoot = umgRoot.WidgetTree.RootWidget
     }
     var outer = Root.GetEngine ? JavascriptLibrary.CreatePackage(null,'/Script/Javascript') : GWorld
+    outer = umgRoot.Slot.Parent ? umgRoot.GetOuter() : (parent.ueobj || outer);
+    if (outer instanceof JavascriptWidget) {
+      outer = outer.WidgetTree;
+    }
 
     this.ueobj = this._typeThunk.createUmgElement(
       this._currentElement,
       cls => {
-        var widget = new cls(outer);
         var props = this._currentElement.props
+        var widget = new cls(outer, props.Name || '');
         for (var key in props) {
           this.updateProperty(widget, props[key], key);
         }
